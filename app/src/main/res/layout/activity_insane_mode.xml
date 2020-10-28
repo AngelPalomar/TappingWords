@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".HardMode">
+    tools:context=".InsaneMode">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -29,7 +29,7 @@
                 android:textSize="18sp"/>
 
             <TextView
-                android:id="@+id/tv_time_h"
+                android:id="@+id/tv_time_i"
                 android:layout_width="1dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="3"
@@ -45,7 +45,7 @@
                 android:textSize="18sp"/>
 
             <TextView
-                android:id="@+id/tv_points_h"
+                android:id="@+id/tv_points_i"
                 android:layout_width="1dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="3"
@@ -61,7 +61,7 @@
             android:layout_marginVertical="50dp">
 
             <TextView
-                android:id="@+id/tv_word_h"
+                android:id="@+id/tv_word_i"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="PALABRA"
@@ -75,6 +75,7 @@
             Rojo: #EF4848
             Azul: #4A95ED
             amarillo: #EDDD4A
+            verde: #5DED4A
         -->
 
         <LinearLayout
@@ -85,37 +86,57 @@
             android:weightSum="12" >
 
             <ImageButton
-                android:id="@+id/btn_red_h"
+                android:id="@+id/btn_red_i"
                 android:layout_width="1dp"
                 android:layout_height="200dp"
-                android:layout_weight="4"
+                android:layout_weight="6"
                 android:src="@drawable/white_circle"
                 android:scaleType="fitCenter"
                 android:backgroundTint="#EF4848"
-                android:padding="40dp"
-                android:onClick="clickColorHard"/>
+                android:padding="60dp"
+                android:onClick="clickColorInsane"/>
 
             <ImageButton
-                android:id="@+id/btn_yellow_h"
+                android:id="@+id/btn_blue_i"
                 android:layout_width="1dp"
                 android:layout_height="200dp"
-                android:layout_weight="4"
-                android:src="@drawable/white_circle"
-                android:scaleType="fitCenter"
-                android:backgroundTint="#EDDD4A"
-                android:padding="40dp"
-                android:onClick="clickColorHard"/>
-
-            <ImageButton
-                android:id="@+id/btn_blue_h"
-                android:layout_width="1dp"
-                android:layout_height="200dp"
-                android:layout_weight="4"
+                android:layout_weight="6"
                 android:src="@drawable/white_circle"
                 android:scaleType="fitCenter"
                 android:backgroundTint="#4A95ED"
-                android:padding="40dp"
-                android:onClick="clickColorHard"/>
+                android:padding="60dp"
+                android:onClick="clickColorInsane"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="bottom|center"
+            android:orientation="horizontal"
+            android:weightSum="12" >
+
+            <ImageButton
+                android:id="@+id/btn_yellow_i"
+                android:layout_width="1dp"
+                android:layout_height="200dp"
+                android:layout_weight="6"
+                android:src="@drawable/white_circle"
+                android:scaleType="fitCenter"
+                android:backgroundTint="#EDDD4A"
+                android:padding="60dp"
+                android:onClick="clickColorInsane"/>
+
+            <ImageButton
+                android:id="@+id/btn_green_i"
+                android:layout_width="1dp"
+                android:layout_height="200dp"
+                android:layout_weight="6"
+                android:src="@drawable/white_circle"
+                android:scaleType="fitCenter"
+                android:backgroundTint="#5DED4A"
+                android:padding="60dp"
+                android:onClick="clickColorInsane"/>
 
         </LinearLayout>
 

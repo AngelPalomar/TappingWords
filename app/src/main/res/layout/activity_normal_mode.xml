@@ -33,8 +33,8 @@
                 android:layout_width="1dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="3"
-                android:text="00:00"
-                android:textSize="18sp"/>
+                android:text="01:00"
+                android:textSize="24sp"/>
 
             <TextView
                 android:layout_width="1dp"
@@ -49,8 +49,8 @@
                 android:layout_width="1dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="3"
-                android:text="0 pts"
-                android:textSize="18sp"/>
+                android:text="0"
+                android:textSize="24sp"/>
 
         </LinearLayout>
 
@@ -92,7 +92,8 @@
                 android:src="@drawable/white_circle"
                 android:scaleType="fitCenter"
                 android:backgroundTint="#EF4848"
-                android:padding="60dp"/>
+                android:padding="60dp"
+                android:onClick="clickColorNormal"/>
 
             <ImageButton
                 android:id="@+id/btn_blue"
@@ -102,7 +103,8 @@
                 android:src="@drawable/white_circle"
                 android:scaleType="fitCenter"
                 android:backgroundTint="#4A95ED"
-                android:padding="60dp"/>
+                android:padding="60dp"
+                android:onClick="clickColorNormal"/>
 
         </LinearLayout>
 

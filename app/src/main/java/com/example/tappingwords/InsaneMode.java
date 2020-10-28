@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class HardMode extends AppCompatActivity {
+public class InsaneMode extends AppCompatActivity {
 
     private TextView tvTime, tvPoints, tvWord;
     private int points = 0, seconds = 61;
@@ -25,16 +25,16 @@ public class HardMode extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_hard_mode);
+        setContentView(R.layout.activity_insane_mode);
 
         //Inicializar colores y palabras
         colorWord = new ColorWord();
         colorWord.setWordList(new ArrayList<String>());
         colorWord.setColorList(new ArrayList<String>());
 
-        tvTime = findViewById(R.id.tv_time_h);
-        tvPoints = findViewById(R.id.tv_points_h);
-        tvWord = findViewById(R.id.tv_word_h);
+        tvTime = findViewById(R.id.tv_time_i);
+        tvPoints = findViewById(R.id.tv_points_i);
+        tvWord = findViewById(R.id.tv_word_i);
 
         final AlertDialog.Builder gameResults = new AlertDialog.Builder(this);
 
@@ -42,6 +42,7 @@ public class HardMode extends AppCompatActivity {
         colorWord.wordList.add("ROJO");
         colorWord.wordList.add("AZUL");
         colorWord.wordList.add("AMARILLO");
+        colorWord.wordList.add("VERDE");
 
         //Colores
         //Rojos
@@ -67,6 +68,14 @@ public class HardMode extends AppCompatActivity {
         colorWord.colorList.add("DECA16");
         colorWord.colorList.add("EEDF57");
         colorWord.colorList.add("F0E264");
+
+        //Verdes
+        colorWord.colorList.add("5DED4A");
+        colorWord.colorList.add("4BEB36");
+        colorWord.colorList.add("39E922");
+        colorWord.colorList.add("2DDE16");
+        colorWord.colorList.add("69EE57");
+        colorWord.colorList.add("74F064");
 
         printColorWord(colorWord.generateColor(), colorWord.generateWord());
 
@@ -117,12 +126,12 @@ public class HardMode extends AppCompatActivity {
         }, 1000, 1000);
     }
 
-    public void clickColorHard (View view) {
+    public void clickColorInsane (View view) {
         ImageButton btnColor = findViewById(view.getId());
 
         switch (btnColor.getId()) {
             //Si presionó el botón rojo
-            case R.id.btn_red_h:
+            case R.id.btn_red_i:
                 if (tvWord.getText().toString().equals("ROJO")) {
                     points += 5;
                 } else {
@@ -134,7 +143,7 @@ public class HardMode extends AppCompatActivity {
                 break;
 
             //Si presionó el botón azul
-            case R.id.btn_blue_h:
+            case R.id.btn_blue_i:
                 if (tvWord.getText().toString().equals("AZUL")) {
                     points += 5;
                 } else {
@@ -145,8 +154,19 @@ public class HardMode extends AppCompatActivity {
                 printColorWord(colorWord.generateColor(), colorWord.generateWord());
                 break;
 
-            case R.id.btn_yellow_h:
+            case R.id.btn_yellow_i:
                 if (tvWord.getText().toString().equals("AMARILLO")) {
+                    points += 5;
+                } else {
+                    points -= 5;
+                }
+
+                //Genera nuevo color y palabra
+                printColorWord(colorWord.generateColor(), colorWord.generateWord());
+                break;
+
+            case R.id.btn_green_i:
+                if (tvWord.getText().toString().equals("VERDE")) {
                     points += 5;
                 } else {
                     points -= 5;
@@ -183,7 +203,7 @@ public class HardMode extends AppCompatActivity {
                 .setNegativeButton("Salir", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        startActivity(new Intent(HardMode.this, MainActivity.class));
+                        startActivity(new Intent(InsaneMode.this, MainActivity.class));
                     }
                 })
                 .show();
