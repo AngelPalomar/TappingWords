@@ -6,6 +6,7 @@ import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
@@ -21,11 +22,15 @@ public class HardMode extends AppCompatActivity {
     private int points = 0, seconds = 61;
     private ColorWord colorWord;
     private Timer timer;
+    private MediaPlayer music;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_hard_mode);
+
+        music = MediaPlayer.create(HardMode.this, R.raw.hard_theme);
+        music.start();
 
         //Inicializar colores y palabras
         colorWord = new ColorWord();
@@ -100,7 +105,8 @@ public class HardMode extends AppCompatActivity {
                                     .setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
                                         @Override
                                         public void onClick(DialogInterface dialogInterface, int i) {
-                                            onBackPressed();
+                                            music.stop();
+                                            startActivity(new Intent(HardMode.this, MainActivity.class));
                                         }
                                     })
                                     .setNegativeButton("Volver a jugar", new DialogInterface.OnClickListener() {
@@ -168,6 +174,7 @@ public class HardMode extends AppCompatActivity {
     }
 
     public void restartGame() {
+        music.stop();
         Intent intent = getIntent();
         finish();
         startActivity(intent);
@@ -183,6 +190,7 @@ public class HardMode extends AppCompatActivity {
                 .setNegativeButton("Salir", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
+                        music.stop();
                         startActivity(new Intent(HardMode.this, MainActivity.class));
                     }
                 })
