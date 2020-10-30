@@ -19,7 +19,7 @@ import java.util.TimerTask;
 public class InsaneMode extends AppCompatActivity {
 
     private TextView tvTime, tvPoints, tvWord;
-    private int points = 0, seconds = 61;
+    private int points = 0, seconds = 60;
     private ColorWord colorWord;
     private Timer timer;
     private MediaPlayer music;
@@ -141,7 +141,9 @@ public class InsaneMode extends AppCompatActivity {
                 if (tvWord.getText().toString().equals("ROJO")) {
                     points += 5;
                 } else {
-                    points -= 5;
+                    if (points > 0) {
+                        points -= 5;
+                    }
                 }
 
                 //Genera nuevo color y palabra
@@ -153,7 +155,9 @@ public class InsaneMode extends AppCompatActivity {
                 if (tvWord.getText().toString().equals("AZUL")) {
                     points += 5;
                 } else {
-                    points -= 5;
+                    if (points > 0) {
+                        points -= 5;
+                    }
                 }
 
                 //Genera nuevo color y palabra
@@ -164,7 +168,9 @@ public class InsaneMode extends AppCompatActivity {
                 if (tvWord.getText().toString().equals("AMARILLO")) {
                     points += 5;
                 } else {
-                    points -= 5;
+                    if (points > 0) {
+                        points -= 5;
+                    }
                 }
 
                 //Genera nuevo color y palabra
@@ -175,7 +181,9 @@ public class InsaneMode extends AppCompatActivity {
                 if (tvWord.getText().toString().equals("VERDE")) {
                     points += 5;
                 } else {
-                    points -= 5;
+                    if (points > 0) {
+                        points -= 5;
+                    }
                 }
 
                 //Genera nuevo color y palabra

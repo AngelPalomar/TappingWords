@@ -19,7 +19,7 @@ import java.util.TimerTask;
 public class NormalMode extends AppCompatActivity {
 
     private TextView tvTime, tvPoints, tvWord;
-    private int points = 0, seconds = 61;
+    private int points = 0, seconds = 60;
     private ColorWord colorWord;
     private Timer timer;
     private MediaPlayer music;
@@ -90,23 +90,52 @@ public class NormalMode extends AppCompatActivity {
                         //Cuando el reloj llegue a cero
                         if (seconds == 0) {
                             timer.cancel();
-                            gameResults.setTitle("¡El tiempo se ha acabado!")
-                                    .setMessage(String.format("Puntos: %d", points))
-                                    .setCancelable(false)
-                                    .setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
-                                        @Override
-                                        public void onClick(DialogInterface dialogInterface, int i) {
-                                            music.stop();
-                                            startActivity(new Intent(NormalMode.this, MainActivity.class));
-                                        }
-                                    })
-                                    .setNegativeButton("Volver a jugar", new DialogInterface.OnClickListener() {
-                                        @Override
-                                        public void onClick(DialogInterface dialogInterface, int i) {
-                                            restartGame();
-                                        }
-                                    })
-                                    .show();
+                            if (points > 0) {
+                                gameResults.setTitle("¡El tiempo se ha acabado!")
+                                        .setMessage(String.format("Puntos: %d", points))
+                                        .setCancelable(false)
+                                        .setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
+                                            @Override
+                                            public void onClick(DialogInterface dialogInterface, int i) {
+                                                music.stop();
+                                                startActivity(new Intent(NormalMode.this, MainActivity.class));
+                                            }
+                                        })
+                                        .setNeutralButton("Guardar puntuación", new DialogInterface.OnClickListener() {
+                                            @Override
+                                            public void onClick(DialogInterface dialogInterface, int i) {
+                                                startActivity(new Intent(NormalMode.this, UploadScore.class)
+                                                        .putExtra("points", points)
+                                                        .putExtra("difficulty", "normal")
+                                                );
+                                            }
+                                        })
+                                        .setNegativeButton("Volver a jugar", new DialogInterface.OnClickListener() {
+                                            @Override
+                                            public void onClick(DialogInterface dialogInterface, int i) {
+                                                restartGame();
+                                            }
+                                        })
+                                        .show();
+                            } else {
+                                gameResults.setTitle("¡El tiempo se ha acabado!")
+                                        .setMessage(String.format("Puntos: %d", points))
+                                        .setCancelable(false)
+                                        .setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
+                                            @Override
+                                            public void onClick(DialogInterface dialogInterface, int i) {
+                                                music.stop();
+                                                startActivity(new Intent(NormalMode.this, MainActivity.class));
+                                            }
+                                        })
+                                        .setNegativeButton("Volver a jugar", new DialogInterface.OnClickListener() {
+                                            @Override
+                                            public void onClick(DialogInterface dialogInterface, int i) {
+                                                restartGame();
+                                            }
+                                        })
+                                        .show();
+                            }
                         }
                     }
                 });
@@ -123,7 +152,9 @@ public class NormalMode extends AppCompatActivity {
                 if (tvWord.getText().toString().equals("ROJO")) {
                     points += 5;
                 } else {
-                    points -= 5;
+                    if (points > 0) {
+                        points -= 5;
+                    }
                 }
 
                 //Genera nuevo color y palabra
@@ -135,7 +166,9 @@ public class NormalMode extends AppCompatActivity {
                 if (tvWord.getText().toString().equals("AZUL")) {
                     points += 5;
                 } else {
-                    points -= 5;
+                    if (points > 0) {
+                        points -= 5;
+                    }
                 }
 
                 //Genera nuevo color y palabra
