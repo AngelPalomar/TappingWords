@@ -108,23 +108,53 @@ public class InsaneMode extends AppCompatActivity {
                         //Cuando el reloj llegue a cero
                         if (seconds == 0) {
                             timer.cancel();
-                            gameResults.setTitle("¡El tiempo se ha acabado!")
-                                    .setMessage(String.format("Puntos: %d", points))
-                                    .setCancelable(false)
-                                    .setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
-                                        @Override
-                                        public void onClick(DialogInterface dialogInterface, int i) {
-                                            music.stop();
-                                            startActivity(new Intent(InsaneMode.this, MainActivity.class));
-                                        }
-                                    })
-                                    .setNegativeButton("Volver a jugar", new DialogInterface.OnClickListener() {
-                                        @Override
-                                        public void onClick(DialogInterface dialogInterface, int i) {
-                                            restartGame();
-                                        }
-                                    })
-                                    .show();
+                            if (points > 0) {
+                                gameResults.setTitle("¡El tiempo se ha acabado!")
+                                        .setMessage(String.format("Puntos: %d", points))
+                                        .setCancelable(false)
+                                        .setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
+                                            @Override
+                                            public void onClick(DialogInterface dialogInterface, int i) {
+                                                music.stop();
+                                                startActivity(new Intent(InsaneMode.this, MainActivity.class));
+                                            }
+                                        })
+                                        .setNeutralButton("Guardar puntuación", new DialogInterface.OnClickListener() {
+                                            @Override
+                                            public void onClick(DialogInterface dialogInterface, int i) {
+                                                music.stop();
+                                                startActivity(new Intent(InsaneMode.this, UploadScore.class)
+                                                        .putExtra("points", points)
+                                                        .putExtra("difficulty", "insane")
+                                                );
+                                            }
+                                        })
+                                        .setNegativeButton("Volver a jugar", new DialogInterface.OnClickListener() {
+                                            @Override
+                                            public void onClick(DialogInterface dialogInterface, int i) {
+                                                restartGame();
+                                            }
+                                        })
+                                        .show();
+                            } else {
+                                gameResults.setTitle("¡El tiempo se ha acabado!")
+                                        .setMessage(String.format("Puntos: %d", points))
+                                        .setCancelable(false)
+                                        .setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
+                                            @Override
+                                            public void onClick(DialogInterface dialogInterface, int i) {
+                                                music.stop();
+                                                startActivity(new Intent(InsaneMode.this, MainActivity.class));
+                                            }
+                                        })
+                                        .setNegativeButton("Volver a jugar", new DialogInterface.OnClickListener() {
+                                            @Override
+                                            public void onClick(DialogInterface dialogInterface, int i) {
+                                                restartGame();
+                                            }
+                                        })
+                                        .show();
+                            }
                         }
                     }
                 });

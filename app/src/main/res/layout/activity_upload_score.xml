@@ -46,7 +46,7 @@
             android:hint="Ingresa un nombre de usuario"
             android:textAlignment="center"
             android:layout_marginTop="40dp"
-            android:inputType="textPersonName"
+            android:inputType="textCapWords"
             android:maxLength="20"/>
 
         <LinearLayout

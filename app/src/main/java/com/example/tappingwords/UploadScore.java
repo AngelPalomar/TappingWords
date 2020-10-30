@@ -12,6 +12,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
+
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
+
 import cz.msebera.android.httpclient.Header;
 
 public class UploadScore extends AppCompatActivity {
@@ -51,7 +55,7 @@ public class UploadScore extends AppCompatActivity {
             return;
         }
 
-        String username = edUsername.getText().toString();
+        String username = edUsername.getText().toString().trim();
 
         //Deshabilitar botón
         btnSave.setEnabled(false);
@@ -61,10 +65,17 @@ public class UploadScore extends AppCompatActivity {
     }
 
     public void insertData(String usrname, int sc, String df) {
+        String newUser = "";
         final AlertDialog.Builder message = new AlertDialog.Builder(this);
 
+        try {
+            newUser = URLEncoder.encode(usrname, "UTF-8");
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+
         final String url = "http://dtai.uteq.edu.mx/~crupal192/tapping_words/save_score.php?"; //PHP Script
-        String params = "username=" + usrname + "&score=" + sc + "&difficulty=" + df;
+        String params = "username=" + newUser + "&score=" + sc + "&difficulty=" + df;
 
         client.post(url + params, new AsyncHttpResponseHandler() {
             @Override

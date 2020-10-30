@@ -104,6 +104,7 @@ public class NormalMode extends AppCompatActivity {
                                         .setNeutralButton("Guardar puntuación", new DialogInterface.OnClickListener() {
                                             @Override
                                             public void onClick(DialogInterface dialogInterface, int i) {
+                                                music.stop();
                                                 startActivity(new Intent(NormalMode.this, UploadScore.class)
                                                         .putExtra("points", points)
                                                         .putExtra("difficulty", "normal")

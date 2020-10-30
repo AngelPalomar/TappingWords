@@ -57,4 +57,22 @@ public class MainActivity extends AppCompatActivity {
                 .setPositiveButton("Aceptar", null)
                 .show();
     }
+
+    public void toViewTopNormal(View view) {
+        startActivity(new Intent(MainActivity.this, ViewTop.class)
+                .putExtra("diff", "normal")
+        );
+    }
+
+    public void toViewTopHard(View view) {
+        startActivity(new Intent(MainActivity.this, ViewTop.class)
+                .putExtra("diff", "hard")
+        );
+    }
+
+    public void toViewTopInsane(View view) {
+        startActivity(new Intent(MainActivity.this, ViewTop.class)
+                .putExtra("diff", "insane")
+        );
+    }
 }
